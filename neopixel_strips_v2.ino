@@ -375,6 +375,103 @@ Esso::Esso() {
   set_fourth_color(CRGB::White);
 }
 
+class PuppetLabs : public Animation {
+  public:
+    PuppetLabs();
+    void draw() {
+      CRGB puppet_primary = CRGB(110, 0, 120);
+      CRGB puppet_secondary = CRGB(175, 40, 125);
+      CRGB puppet_yellow = CRGB(200, 126, 17);
+      set_led_color(3, 1, puppet_primary);
+      set_led_color(4, 2, puppet_secondary);
+      for (int i=1; i < 16; i++) {
+        set_led_color(i+2, 1, puppet_yellow);
+      }
+      for (int i=2; i < 17; i++) {
+        set_led_color(i+2, 2, puppet_yellow);
+      }
+      
+      for (int i=0; i < 13; i++) {
+        set_led_color(i/2+2, i+1, puppet_primary);
+        set_led_color(i/2+3, i+1, puppet_primary);
+      }
+           
+      set_led_color(18, 3, puppet_secondary);
+      set_led_color(18, 4, puppet_secondary);
+      
+      set_led_color(17, 3, puppet_secondary);
+      set_led_color(17, 4, puppet_secondary);
+      set_led_color(17, 5, puppet_secondary);
+      set_led_color(17, 6, puppet_secondary);
+
+      set_led_color(16, 5, puppet_secondary);
+      set_led_color(16, 6, puppet_secondary);
+      set_led_color(16, 7, puppet_secondary);
+      set_led_color(16, 8, puppet_secondary);
+
+      set_led_color(15, 7, puppet_secondary);
+      set_led_color(15, 8, puppet_secondary);
+      set_led_color(15, 9, puppet_secondary);
+      set_led_color(15, 10, puppet_secondary);
+
+      set_led_color(14, 9, puppet_secondary);
+      set_led_color(14, 10, puppet_secondary);
+      set_led_color(14, 11, puppet_secondary);
+      set_led_color(14, 12, puppet_secondary);
+      
+      set_led_color(13, 11, puppet_secondary);
+      set_led_color(13, 12, puppet_secondary);
+      set_led_color(13, 13, puppet_secondary);
+      set_led_color(13, 14, puppet_secondary);
+      
+      set_led_color(13, 15, puppet_secondary);
+      set_led_color(13, 16, puppet_secondary);
+      set_led_color(13, 17, puppet_secondary);
+      set_led_color(13, 18, puppet_secondary);
+      set_led_color(13, 19, puppet_secondary);
+      
+      set_led_color(12, 12, puppet_secondary);
+      set_led_color(12, 13, puppet_secondary);
+      set_led_color(12, 14, puppet_secondary);
+      set_led_color(12, 15, puppet_secondary);
+      set_led_color(12, 16, puppet_secondary);
+      set_led_color(12, 17, puppet_secondary);
+      set_led_color(12, 18, puppet_secondary);
+      set_led_color(12, 19, puppet_secondary);
+      
+      for (int i=7; i < 16; i++) {
+        set_led_color(i, 19, puppet_secondary);
+      }
+      for (int i=8; i < 15; i++) {
+        set_led_color(i, 18, puppet_secondary);
+      }
+      set_led_color(9, 17, puppet_secondary);
+      set_led_color(2, 1, CRGB::Black);
+
+//      set_led_color(1, 1, puppet_primary);
+//      set_led_color(2, 1, puppet_primary);
+//      set_led_color(2, 2, puppet_primary);
+//      set_led_color(3, 2, puppet_primary);
+//      set_led_color(2, 3, puppet_primary);
+//      set_led_color(3, 3, puppet_primary);
+//      set_led_color(3, 4, puppet_primary);
+//      set_led_color(4, 4, puppet_primary);
+//      set_led_color(4, 5, puppet_primary);
+//      set_led_color(5, 5, puppet_primary);
+//      set_led_color(5, 6, puppet_primary);
+//      set_led_color(6, 6, puppet_primary);
+//      set_led_color(6, 7, puppet_primary);
+//      set_led_color(7, 7, puppet_primary);
+//      set_led_color(7, 8, puppet_primary);
+//      set_led_color(8, 8, puppet_primary);
+    }
+    void serial_event(String incoming) {
+    }
+};
+
+PuppetLabs::PuppetLabs() {
+}
+
 class Nexus : public Animation {
   public:
     Nexus();
@@ -568,7 +665,7 @@ Numbers::Numbers() {
 //  };
 }
 
-const int NUM_ANIMATIONS = 8;
+const int NUM_ANIMATIONS = 9;
 Animation *animations[NUM_ANIMATIONS];
 Animation *current;
 
@@ -608,8 +705,9 @@ void setup() {
   animations[5] = new Esso;
   animations[6] = new Nexus;
   animations[7] = new FlashySquares;
+  animations[8] = new PuppetLabs;
 
-  current = animations[5];
+  current = animations[8];
   for (int i=0; i<NUM_ANIMATIONS; i++) {
     animations[i]->set_intensity(.5);
     animations[i]->set_first_color(CRGB::Red);
